@@ -1,4 +1,5 @@
 #include "orbis/render/shading/shader.hpp"
+#include "orbis/logging/logger.hpp"
 #include "orbis/math/types.hpp"
 
 #include <glad/glad.h>
@@ -22,6 +23,8 @@ namespace {
 }
 
 namespace orbis {
+    LOG_CATEGORY(Shader);
+
     std::shared_ptr<Shader> Shader::fromSources(const std::vector<ShaderSource>& sources) {
         Shader shader;
 
@@ -51,7 +54,6 @@ namespace orbis {
         std::string sourceCode;
 
         try {
-            std::cout << "[INFO][SHADER] Loading shader source: " << source.path << std::endl;
             sourceFile.open(source.path);
 
             std::stringstream sourceStream;
@@ -60,18 +62,16 @@ namespace orbis {
             sourceFile.close();
 
             sourceCode = sourceStream.str();
-
-            std::cout << "Code: " << sourceCode << "\n" << std::endl;
         } catch (std::ifstream::failure e) {
-            std::cerr << "[ERROR][SHADER] Could not read source file" << std::endl;
-            std::cerr << "[ERROR][SHADER] Exception: " << e.what() << std::endl;
+            LOG_ERROR(LogCatShader, "Could not read source file ", source.path);
+            LOG_ERROR(LogCatShader, "Exception: ", e.what());
 
             if (!sourceFile.is_open()) {
-                std::cerr << "[ERROR][SHADER] File is not open (likely missing or wrong path)" << std::endl;
+                LOG_ERROR(LogCatShader, "File is not open (likely missing or wrong path)");
             } else if (sourceFile.bad()) {
-                std::cerr << "[ERROR][SHADER] Stream is corrupted" << std::endl;
+                LOG_ERROR(LogCatShader, "Stream is corrupted");
             } else if (sourceFile.fail()) {
-                std::cerr << "[ERROR][SHADER] Logical error on i/o operation" << std::endl;
+                LOG_ERROR(LogCatShader, "Logical error on i/o operation");
             }
         }
 
@@ -88,7 +88,7 @@ namespace orbis {
 
         if(!success) {
             glGetShaderInfoLog(handle, 512, NULL, infoLog);
-            std::cerr << "[ERROR][SHADER] Shader compilation failed\n" << infoLog << std::endl;
+            LOG_ERROR(LogCatShader, "Stream is corrupted\n", infoLog);
         }
 
         return handle;
