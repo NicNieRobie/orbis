@@ -4,11 +4,11 @@ file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/simple_shader.vert
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/simple_shader.frag
      DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
-add_executable(triangle
+add_executable(cube
     main.cpp
 )
 
-target_link_libraries(triangle
+target_link_libraries(cube
     PRIVATE
         orbis
 )
