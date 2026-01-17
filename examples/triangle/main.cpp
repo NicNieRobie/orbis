@@ -1,3 +1,7 @@
+#include "orbis/render/mesh/cube.hpp"
+#include "orbis/render/renderer.hpp"
+#include "orbis/render/shading/material.hpp"
+#include "orbis/render/shading/shader.hpp"
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
@@ -19,14 +23,37 @@ int main() {
     }
 
     glViewport(0, 0, 1280, 720);
+    glEnable(GL_DEPTH_TEST);
+
+    orbis::Renderer renderer = orbis::Renderer::init();
+    orbis::Cube cube = orbis::Cube(1.f);
+
+    auto shader = orbis::Shader::fromSources({
+        {
+            orbis::ShadingStage::VERTEX,
+            "./simple_shader.vert"
+        },
+        {
+            orbis::ShadingStage::FRAGMENT,
+            "./simple_shader.frag"
+        }
+    });
+
+    auto material = orbis::Material::create(shader);
 
     while (!glfwWindowShouldClose(window)) {
-        glfwPollEvents();
+        renderer.initFrame();
 
-        glClearColor(0.1f, 0.1f, 0.12f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT);
+        renderer.submitRenderObject({
+            &cube,
+            material,
+            orbis::math::Mat4(1.f)
+        });
+
+        renderer.finishFrame();
 
         glfwSwapBuffers(window);
+        glfwPollEvents();
     }
 
     glfwDestroyWindow(window);

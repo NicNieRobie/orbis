@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.16)
 
 project(Orbis LANGUAGES C CXX)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
@@ -19,6 +19,11 @@ set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 
 add_subdirectory(external/glfw)
+
+# ----------------------------------------
+# GLM
+# ----------------------------------------
+add_subdirectory(external/glm)
 
 # ----------------------------------------
 # GLAD

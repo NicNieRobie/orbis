@@ -1,6 +1,8 @@
-add_library(orbis
-    src/orbis.cpp
+file(GLOB_RECURSE ORBIS_SOURCES
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp"
 )
+
+add_library(orbis ${ORBIS_SOURCES})
 
 add_library(orbis::orbis ALIAS orbis)
 
@@ -12,6 +14,7 @@ target_include_directories(orbis
 
 target_link_libraries(orbis
     PUBLIC
+        glm
         glfw
         glad
         OpenGL::GL

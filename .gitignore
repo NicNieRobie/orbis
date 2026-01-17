@@ -48,8 +48,3 @@ cmake-build-*/
 *.tmp
 *.bak
 *.orig
-
-# ===============================
-# External / 3rd-party dependencies
-# ===============================
-/external/
