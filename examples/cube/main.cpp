@@ -7,13 +7,17 @@
 #include <iostream>
 #include <orbis/orbis.hpp>
 
+void framebufferSizeCallback(GLFWwindow* window, int width, int height) {
+    glViewport(0, 0, width, height);
+}
+
 int main() {
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-    GLFWwindow* window = glfwCreateWindow(1280, 720, "Clean CMake", nullptr, nullptr);
+    GLFWwindow* window = glfwCreateWindow(1280, 720, "Orbis - Cube Example", nullptr, nullptr);
     glfwMakeContextCurrent(window);
     glfwSwapInterval(1);
 
@@ -24,6 +28,8 @@ int main() {
 
     glViewport(0, 0, 1280, 720);
     glEnable(GL_DEPTH_TEST);
+
+    glfwSetFramebufferSizeCallback(window, framebufferSizeCallback);
 
     orbis::Renderer renderer = orbis::Renderer::init();
     orbis::Cube cube = orbis::Cube(1.f);
@@ -49,6 +55,8 @@ int main() {
             material,
             orbis::math::Mat4(1.f)
         });
+
+        cube.rotate(0.01f, {1.f, 1.f, 0.f});
 
         renderer.finishFrame();
 

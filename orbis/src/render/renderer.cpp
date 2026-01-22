@@ -3,8 +3,6 @@
 #include "orbis/render/shading/material.hpp"
 
 #include <glad/glad.h>
-#include <iostream>
-#include <ostream>
 
 namespace orbis {
     Renderer Renderer::init() {
@@ -13,7 +11,7 @@ namespace orbis {
             std::make_shared<Camera>(60.f, 1280.f / 720.f, 0.1f, 100.f)
         };
 
-        renderer.m_renderContext.camera->setPosition({0.f, 2.f, 5.f});
+        renderer.m_renderContext.camera->setPosition({0.f, 0.f, 5.f});
 
         return renderer;
     }
