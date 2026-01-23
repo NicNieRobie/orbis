@@ -1,5 +1,4 @@
 #include "orbis/render/renderer.hpp"
-#include "orbis/render/mesh/cube.hpp"
 #include "orbis/render/shading/material.hpp"
 
 #include <glad/glad.h>
