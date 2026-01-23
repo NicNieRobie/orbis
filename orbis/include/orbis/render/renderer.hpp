@@ -2,6 +2,7 @@
 
 #include "orbis/math/types.hpp"
 #include "orbis/render/camera/camera.hpp"
+#include "orbis/render/mesh/primitive.hpp"
 
 #include <memory>
 #include <vector>
@@ -17,9 +18,8 @@ namespace orbis {
     };
 
     struct RenderObject {
-        Cube* mesh;
+        Primitive* mesh;
         std::shared_ptr<Material> material;
-        math::Mat4 transform;
     };
 
     class Renderer {

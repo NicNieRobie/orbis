@@ -1,7 +1,6 @@
 #include "orbis/render/mesh/cube.hpp"
 
 #include <glad/glad.h>
-#include <iostream>
 #include <memory>
 
 namespace orbis {
