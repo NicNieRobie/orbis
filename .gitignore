@@ -37,7 +37,8 @@ Makefile
 cmake-build-*/
 
 # Visual Studio
-.vs
+.vs/
+.vscode/
 
 # Vim / Emacs / macOS
 *~
