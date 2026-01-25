@@ -1,29 +1,10 @@
-file(GLOB_RECURSE ORBIS_SOURCES
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp"
+file(GLOB_RECURSE ORBIS_HEADERS "Source/*.h")
+file(GLOB_RECURSE ORBIS_SOURCES "Source/*.cpp")
+
+add_library(Orbis STATIC ${ORBIS_SOURCES} ${ORBIS_HEADERS})
+
+target_include_directories(Orbis PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}/Source
 )
 
-add_library(orbis ${ORBIS_SOURCES})
-
-add_library(orbis::orbis ALIAS orbis)
-
-target_include_directories(orbis
-    PUBLIC
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-        $<INSTALL_INTERFACE:include>
-)
-
-target_link_libraries(orbis
-    PUBLIC
-        glm
-        glfw
-        glad
-        OpenGL::GL
-)
-
-target_compile_features(orbis PUBLIC cxx_std_17)
-
-if (MSVC)
-    target_compile_options(orbis PRIVATE /W4)
-else()
-    target_compile_options(orbis PRIVATE -Wall -Wextra -Wpedantic)
-endif()
+target_link_libraries(Orbis PUBLIC glad glfw glm)

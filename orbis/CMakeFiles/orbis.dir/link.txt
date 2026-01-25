@@ -1,2 +1,0 @@
-/usr/bin/ar qc liborbis.a CMakeFiles/orbis.dir/src/orbis.cpp.o
-/usr/bin/ranlib liborbis.a

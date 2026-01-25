@@ -18,23 +18,23 @@ set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 
-add_subdirectory(external/glfw)
+add_subdirectory(Vendor/glfw)
 
 # ----------------------------------------
 # GLM
 # ----------------------------------------
-add_subdirectory(external/glm)
+add_subdirectory(Vendor/glm)
 
 # ----------------------------------------
 # GLAD
 # ----------------------------------------
 add_library(glad
-    external/glad/src/glad.c
+    Vendor/glad/src/glad.c
 )
 
 target_include_directories(glad
     PUBLIC
-        external/glad/include
+        Vendor/glad/include
 )
 
 target_link_libraries(glad
@@ -50,11 +50,11 @@ find_package(OpenGL REQUIRED)
 # ----------------------------------------
 # Engine
 # ----------------------------------------
-add_subdirectory(orbis)
+add_subdirectory(Orbis)
 
 # ----------------------------------------
 # Examples
 # ----------------------------------------
 if (ORBIS_BUILD_EXAMPLES)
-    add_subdirectory(examples)
+    add_subdirectory(Examples)
 endif()
