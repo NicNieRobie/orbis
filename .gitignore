@@ -36,6 +36,10 @@ Makefile
 *.iml
 cmake-build-*/
 
+# Visual Studio
+.vs/
+.vscode/
+
 # Vim / Emacs / macOS
 *~
 *.swp
