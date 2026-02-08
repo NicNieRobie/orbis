@@ -1,6 +1,9 @@
-[submodule "Vendor/glfw"]
-	path = Vendor/glfw
+[submodule "Orbis/Vendor/glfw"]
+	path = Orbis/Vendor/glfw
 	url = https://github.com/glfw/glfw.git
-[submodule "Vendor/glm"]
-	path = Vendor/glm
+[submodule "Orbis/Vendor/glm"]
+	path = Orbis/Vendor/glm
 	url = https://github.com/g-truc/glm
+[submodule "Orbis/Vendor/quill"]
+	path = Orbis/Vendor/quill
+	url = https://github.com/odygrd/quill.git
